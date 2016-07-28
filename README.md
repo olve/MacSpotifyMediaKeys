@@ -1,20 +1,22 @@
 # MacSpotifyMediaKeys
 Bypass iTunes mediakey hijacking and control Spotify instead.
 
-http://lifehacker.com/5531707/free-your-macs-media-keys-from-itunes-grasp
 
-http://apple.stackexchange.com/questions/58234/override-itunes-media-keys-play-pause-etc-for-spotify
+##The problem MacSpotifyMediaKeys solves
 
-http://apple.stackexchange.com/questions/143146/control-spotify-with-media-keys
+iTunes overrides Media keys even while not running, leaving Spotify in the dark:
+* http://lifehacker.com/5531707/free-your-macs-media-keys-from-itunes-grasp
 
+* http://apple.stackexchange.com/questions/58234/override-itunes-media-keys-play-pause-etc-for-spotify
 
-
-MacSpotifyMediaKeys listens globally for mediakey events, and interacts with Spotify using it's AppleScript API.
-To prevent other applications from receiving said events once MacSpotifyMediaKeys has used it, return null in the event-handler.
-
-must be compiled with -framework Cocoa, eg. 
-
-```clang main.m -o MacSpotifyMediaKeys -framework Cocoa```
+* http://apple.stackexchange.com/questions/143146/control-spotify-with-media-keys
 
 
-must be run as root.
+##How MacSpotifyMediaKeys circumvents this problem
+1. Listen globally for mediakey events
+2. When a mediakey is pressed, use Spotify AppleScript API method corresponding to the pressed key (eg. tell "Spotify" playpause)
+
+##Notes
+* Return null in event-handler to block events (prevent other applications from also handling mediakeys)
+* must be run as root
+* compile with -framework Cocoa flag, eg. ```clang main.m -o MacSpotifyMediaKeys -framework Cocoa```
