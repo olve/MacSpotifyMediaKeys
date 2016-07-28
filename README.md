@@ -4,7 +4,7 @@ Bypass iTunes mediakey hijacking and control Spotify instead.
 
 ##The problem MacSpotifyMediaKeys solves
 
-iTunes overrides Media keys even while not running; Spotify never receives the event and does not react.
+iTunes overrides media keys even while not running; Spotify never receives the event and does not react.
 * http://lifehacker.com/5531707/free-your-macs-media-keys-from-itunes-grasp
 
 * http://apple.stackexchange.com/questions/58234/override-itunes-media-keys-play-pause-etc-for-spotify
