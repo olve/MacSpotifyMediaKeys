@@ -21,30 +21,35 @@ CGEventRef callback(CGEventTapProxy proxy, CGEventType type, CGEventRef event, v
   if ([e subtype] == 8) {
     
     int keycode = (([e data1] & 0xFFFF0000) >> 16);
-    BOOL keyUp = !(([e data1] & 0x0000ff00) == 0x00000a00);
+    //BOOL keyUp = !(([e data1] & 0x0000ff00) == 0x00000a00);
+
+    //key was released (keyUp) 
+    if (!(([e data1] & 0x0000FF00) == 0x00000a00)) {
     
-    if (keycode == NX_KEYTYPE_PLAY && keyUp) {
-      NSAppleScript *playpause = [[NSAppleScript alloc] initWithSource:
-              @"tell application \"Spotify\"\n"
-              @"    playpause\n"
-              @"end tell"];
-      spotifyAction(playpause);
-    } else if (keycode == NX_KEYTYPE_FAST && keyUp) {
-      NSAppleScript *next = [[NSAppleScript alloc] initWithSource:
-              @"tell application \"Spotify\"\n"
-              @"    next track\n"
-              @"end tell"];
-      spotifyAction(next);
-    } else if (keycode == NX_KEYTYPE_REWIND && keyUp) {
-      NSAppleScript *prev = [[NSAppleScript alloc] initWithSource:
-              @"tell application \"Spotify\"\n"
-              @"    previous track\n"
-              @"end tell"];
-      spotifyAction(prev);
+      if (keycode == NX_KEYTYPE_PLAY) {
+        NSAppleScript *playpause = [[NSAppleScript alloc] initWithSource:
+                 @"tell application \"Spotify\"\n"
+                 @"    playpause\n"
+                 @"end tell"];
+        spotifyAction(playpause);
+      } else if (keycode == NX_KEYTYPE_FAST) {
+        NSAppleScript *next = [[NSAppleScript alloc] initWithSource:
+                 @"tell application \"Spotify\"\n"
+                 @"    next track\n"
+                 @"end tell"];
+        spotifyAction(next);
+      } else if (keycode == NX_KEYTYPE_REWIND) {
+        NSAppleScript *prev = [[NSAppleScript alloc] initWithSource:
+                 @"tell application \"Spotify\"\n"
+                 @"    previous track\n"
+                 @"end tell"];
+        spotifyAction(prev);
+      }
     }
   }
   
   return event;
+ 
 }
 
 int main() {
