@@ -1,5 +1,5 @@
 # MacSpotifyMediaKeys
-Bypass iTunes mediakey hijacking and control Spotify instead.
+Bypass iTunes mediakey hijacking to control Spotify.
 
 
 ##The problem MacSpotifyMediaKeys solves
